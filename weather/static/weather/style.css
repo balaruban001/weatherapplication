@@ -1,0 +1,115 @@
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    color: #ffffff !important; 
+}
+
+.card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Forms */
+.form-control {
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 12px;
+    padding: 8px 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.btn-primary {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border: none;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #357abd, #285a8e);
+    transform: translateY(-2px);
+}
+.btn-outline-secondary {
+    border-radius: 12px;
+    border: 1px solid #bbb;
+    color: #555;
+}
+.btn-outline-secondary:hover {
+    background: #eee;
+}
+
+/* Weather Box */
+.weather-box {
+    background: rgba(74, 144, 226, 0.1);
+    border: 1px solid rgba(74,144,226,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.weather-temp {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d62828;
+}
+
+.weather-desc {
+    font-size: 1.2rem;
+    color: #1d3557;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+/* History Records */
+.list-group-item {
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+.list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Footer (optional) */
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    background: #222;
+    color: #ddd;
+    font-size: 0.9rem;
+    border-top: 1px solid #444;
+}
+
