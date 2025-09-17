@@ -1,0 +1,62 @@
+{% extends "weather/base.html" %}
+{% block content %}
+
+<style>
+.home-wrapper {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f4f8;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.home-card {
+    max-width: 500px;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    backdrop-filter: blur(8px);
+}
+
+.home-card h3 {
+    font-weight: 600;
+    color: #1d3557;
+    margin-bottom: 15px;
+}
+
+.weather-temp {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d62828;
+    margin: 10px 0;
+}
+
+.weather-desc {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #357abd;
+    text-transform: capitalize;
+}
+
+.home-card p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+</style>
+
+<div class="home-wrapper">
+  <div class="card shadow-lg p-4 home-card text-center">
+    {% if weather %}
+      <h3> Current Location Weather ({{ weather.city }})</h3>
+      <p class="weather-temp"><b>{{ weather.temperature }} °C</b></p>
+      <p class="weather-desc">{{ weather.description }}</p>
+    {% else %}
+      <p>⚠️ Could not fetch weather for your location.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

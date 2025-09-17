@@ -1,0 +1,127 @@
+{% extends "weather/base.html" %}
+{% block content %}
+
+<style>
+
+.compare-wrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+    color: #1d3557;
+}
+
+
+.compare-wrapper h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #1d3557;
+}
+
+.compare-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.compare-form input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.compare-form input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74,144,226,0.4);
+}
+
+.compare-form button {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.compare-form button:hover {
+    background: linear-gradient(135deg, #357abd, #285a8e);
+    transform: translateY(-2px);
+}
+
+.compare-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.city-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.city-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.city-card h4 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2a4d8f;
+}
+
+.city-temp {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d62828;
+    margin: 5px 0;
+}
+
+.city-desc {
+    font-size: 1.1rem;
+    color: #357abd;
+    font-style: italic;
+    text-transform: capitalize;
+}
+</style>
+
+<div class="compare-wrapper">
+    <h2>🌍 Compare Weather Between Two Cities</h2>
+
+    <form method="get" class="compare-form">
+        <input type="text" name="city1" placeholder="Enter First City" value="{{ request.GET.city1 }}">
+        <input type="text" name="city2" placeholder="Enter Second City" value="{{ request.GET.city2 }}">
+        <button type="submit">Compare</button>
+    </form>
+
+    {% if weather1 and weather2 %}
+    <div class="compare-results">
+        <div class="city-card">
+            <h4>{{ weather1.city }}</h4>
+            <p class="city-temp">{{ weather1.temperature }} °C</p>
+            <p class="city-desc">{{ weather1.description }}</p>
+        </div>
+        <div class="city-card">
+            <h4>{{ weather2.city }}</h4>
+            <p class="city-temp">{{ weather2.temperature }} °C</p>
+            <p class="city-desc">{{ weather2.description }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

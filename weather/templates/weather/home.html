@@ -1,0 +1,138 @@
+{% extends "weather/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+.home-wrapper {
+    min-height: 100vh;
+    background: #f0f4f8; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.home-card {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.btn {
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border: none;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #357abd, #285a8e);
+}
+
+.btn-outline-secondary {
+    border: 1px solid #999;
+    color: #555;
+}
+.btn-outline-secondary:hover {
+    background: #f0f0f0;
+}
+
+.weather-box {
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid rgba(74,144,226,0.3);
+}
+
+.weather-temp {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d62828;
+}
+
+.weather-desc {
+    font-size: 1.2rem;
+    color: #1d3557;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.list-group {
+    margin-top: 15px;
+}
+.list-group-item {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    background: #f9fafc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+</style>
+
+<div class="home-wrapper">
+  <div class="card shadow-lg p-4 home-card">
+
+    <h2 class="text-center text-primary mb-4">🌤 Weather Application</h2>
+
+    <form method="get" class="d-flex mb-3 justify-content-center">
+        <input type="text" name="city" class="form-control me-2" 
+               placeholder="Enter City" value="{{ weather.city|default:'' }}">
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+    </form>
+
+    {% if weather %}
+      <div class="text-center mb-4">
+        <h3>Current Weather in {{ weather.city }}</h3>
+        <div class="weather-box text-center">
+          <p class="weather-temp">{{ weather.temperature }} °C</p>
+          <p class="weather-desc">{{ weather.description }}</p>
+        </div>
+      </div>
+
+      <form method="get" class="text-center mb-3">
+          <input type="hidden" name="city" value="{{ weather.city }}">
+          <input type="hidden" name="show_history" value="1">
+          <button type="submit" class="btn btn-outline-secondary">
+              Show Last 3 Records
+          </button>
+      </form>
+
+      {% if history %}
+        <h4 class="text-center text-primary"> Last 3 Records</h4>
+        <ul class="list-group">
+          {% for record in history %}
+            <li class="list-group-item">
+              {{ record.date|date:"Y-m-d H:i" }} — 
+              <b>{{ record.temperature }}°C</b> — 
+              {{ record.description }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}
